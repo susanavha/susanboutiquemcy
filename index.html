@@ -177,7 +177,7 @@ function renderCatalog(){
   content.innerHTML = html;
 }
 function renderCard(p){
-  var price = p.price ? '<div class="product-price">RD$ '+p.price+'</div>' : '<div class="product-price no-price">Consultar precio</div>';
+  var price = p.price ? '<div class="product-price">$ '+p.price+'</div>' : '<div class="product-price no-price">Consultar precio</div>';
   var multiBadge = (p.images && p.images.length>1) ? '<div class="multi-photo-badge">ðŸ“· '+p.images.length+'</div>' : '';
   return '<div class="product-card">'+
     '<div class="product-img-wrap" onclick="openModal(\''+p.id+'\')">'+
@@ -195,7 +195,7 @@ function escapeHtml(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'
 function buildWaUrl(p){
   if(!settings.whatsapp) return '#';
   var msg = 'Â¡Hola! Me interesa: '+p.name;
-  if(p.price) msg += ' (RD$ '+p.price+')';
+  if(p.price) msg += ' ($ '+p.price+')';
   return 'https://wa.me/'+settings.whatsapp+'?text='+encodeURIComponent(msg);
 }
 function openModal(id){
@@ -206,7 +206,7 @@ function openModal(id){
   $('modalName').textContent = p.name;
   $('modalBrand').textContent = p.brand;
   $('modalDesc').textContent = p.desc || '';
-  if(p.price){$('modalPrice').textContent = 'RD$ '+p.price;$('modalPrice').className = 'modal-price';}
+  if(p.price){$('modalPrice').textContent = '$ '+p.price;$('modalPrice').className = 'modal-price';}
   else{$('modalPrice').textContent = 'Consultar precio';$('modalPrice').className = 'modal-price no-price';}
   var sizesHtml = '';
   if(p.sizes && p.sizes.length){p.sizes.forEach(function(s){sizesHtml += '<div class="modal-size">'+s+'</div>';});}
